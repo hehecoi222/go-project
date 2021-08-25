@@ -5,9 +5,9 @@ import (
 	"sort"
 )
 
-var arr []int = []int{7, 2, 5, 6}
+var arr []int = []int{6, 5, 7, 1, 8, 2, 9, 9, 7, 7, 9, 1, 1}
 
-const B = 16
+const B = 8
 const N = 4
 
 func removeDuplicate(arr []int) []int {
