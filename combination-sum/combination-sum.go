@@ -33,7 +33,7 @@ func main() {
 			sum += arr[i]
 			re = append(re, arr[i])
 			if sum > B {
-				if (check == false) && (i+1 < len(arr)) && (len(re)-2 > 0) {
+				if !(check) && (i+1 < len(arr)) && (len(re)-2 > 0) {
 					check = true
 					re = re[:len(re)-2]
 					sum -= arr[i] * 2
