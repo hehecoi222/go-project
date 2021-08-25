@@ -5,9 +5,10 @@ import (
 	"sort"
 )
 
-var arr []int = []int{7,2,5,6}
+var arr []int = []int{7, 2, 5, 6}
 
 const B = 16
+const N = 4
 
 func removeDuplicate(arr []int) []int {
 	for i := 0; i < len(arr); {
@@ -67,8 +68,50 @@ func formResult(arr []int, i int) []int {
 	return re
 }
 
+func printRe(su, arr []int, i, j, sum int) bool {
+	su = su[:j]
+	if sum-arr[i] == 0 {
+		su = append(su, arr[i])
+	} else if sum-arr[i] >= arr[i] {
+		su = append(su, arr[i], sum-arr[i])
+	} else {
+		return true
+	}
+	fmt.Println(su)
+	return true
+}
+
+func printDupRe(su, arr []int, i, j, sum int) {
+	sa := make([]int, sum/arr[i])
+	su = su[:j]
+	for k := 0; k < sum/arr[i]; k++ {
+		sa[k] = arr[i]
+	}
+	su = append(su, sa...)
+	fmt.Println(su)
+}
+
+func printVariant(m map[int]int, re, arr []int, i int) {
+	sum := 0
+	for j := len(re) - 1; j > 0; j-- {
+		i := i + 1
+		sum += re[j]
+		for ; i < len(arr); i++ {
+			if sum >= arr[i] {
+				if (m[sum-arr[i]] != 0) && (re[j] != arr[i]) {
+					if printRe(re, arr, i, j, sum) {
+						continue
+					}
+				}
+				if (sum/arr[i] > 2) && (sum%arr[i] == 0) {
+					printDupRe(re, arr, i, j, sum)
+				}
+			}
+		}
+	}
+}
+
 func main() {
-	// const N = 4
 	sort.Ints(arr)
 	arr = removeDuplicate(arr)
 
@@ -78,44 +121,6 @@ func main() {
 
 	for i := range arr {
 		re := formResult(arr, i)
-		sum := 0
-		su := make([]int, len(re))
-		su = copyTo(su,re).([]int)
-
-		for j := len(re) - 1; j > 0; j-- {
-			i := i + 1
-			sum += re[j]
-			for ; i < len(arr); i++ {
-				if sum >= arr[i] {
-					if (m[sum-arr[i]] != 0) && (re[j] != arr[i]) {
-						su = su[:j]
-						if sum-arr[i] == 0 {
-							su = append(su, arr[i])
-						} else if sum-arr[i] >= arr[i] {
-							su = append(su, arr[i], sum-arr[i])
-						} else {
-							continue
-						}
-
-						fmt.Println(su)
-						su = make([]int, len(re))
-						su = copyTo(su,re).([]int)
-						continue
-					}
-					if (sum/arr[i] > 2) && (sum%arr[i] == 0) {
-						sa := make([]int, sum/arr[i])
-						su = su[:j]
-						for k := 0; k < sum/arr[i]; k++ {
-							sa[k] = arr[i]
-						}
-						su = append(su, sa...)
-						fmt.Println(su)
-						su = make([]int, len(re))
-						su = copyTo(su,re).([]int)
-						continue
-					}
-				}
-			}
-		}
+		printVariant(m, re, arr, i)
 	}
 }
