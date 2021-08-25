@@ -7,9 +7,19 @@ import (
 
 func main() {
 	// const N = 4
-	arr := []int{6,5,7,1,8,2,9,9,7,7,9}
+	arr := []int{6, 5, 7, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 8, 2, 9, 9, 7, 7, 9}
 	const B = 6
 	sort.Ints(arr)
+	for i := 0; i < len(arr); {
+		if i == 0 {
+			i++
+			continue
+		} else if arr[i] == arr[i-1] {
+			arr = append(arr[:i], arr[i+1:]...)
+		} else {
+			i++
+		}
+	}
 	m := make(map[int]int, 100)
 	m[0] = 1
 	for i := range arr {
@@ -23,7 +33,7 @@ func main() {
 			sum += arr[i]
 			re = append(re, arr[i])
 			if sum > B {
-				if (check == false) && (i+1 < len(arr)) && (len(re)-2>0) {
+				if (check == false) && (i+1 < len(arr)) && (len(re)-2 > 0) {
 					check = true
 					re = re[:len(re)-2]
 					sum -= arr[i] * 2
@@ -66,9 +76,9 @@ func main() {
 						continue
 					}
 					if (sum/arr[i] > 2) && (sum%arr[i] == 0) {
-						sa := make([]int,sum/arr[i])
+						sa := make([]int, sum/arr[i])
 						su = su[:j]
-						for k:=0; k < sum/arr[i]; k++ {
+						for k := 0; k < sum/arr[i]; k++ {
 							sa[k] = arr[i]
 						}
 						su = append(su, sa...)
