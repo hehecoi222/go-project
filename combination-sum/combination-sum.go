@@ -3,11 +3,12 @@ package main
 import (
 	"fmt"
 	"sort"
+	"time"
 )
 
-var arr []int = []int{6, 5, 7, 1, 8, 2, 9, 9, 7, 7, 9, 1, 1}
+var arr []int = []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20}
 
-const B = 8
+const B = 100
 const N = 4
 
 func removeDuplicate(arr []int) []int {
@@ -112,10 +113,12 @@ func printVariant(m map[int]int, re, arr []int, i int) {
 }
 
 func main() {
+	start := time.Now()
+
 	sort.Ints(arr)
 	arr = removeDuplicate(arr)
 
-	m := make(map[int]int, 100)
+	m := make(map[int]int, arr[len(arr)-1])
 	m[0] = 1
 	m = copyTo(m, arr).(map[int]int)
 
@@ -123,4 +126,7 @@ func main() {
 		re := formResult(arr, i)
 		printVariant(m, re, arr, i)
 	}
+
+	elapsed := time.Since(start)
+	fmt.Print(elapsed)
 }
