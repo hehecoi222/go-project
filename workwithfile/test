@@ -64,11 +64,11 @@ func main() {
 		//Put func here
 
 		start := time.Now()
-		result1,result2 := EvenOddSum(testIn[i].N,testIn[i].Arr)
+		result1,result2 := EvenOddSum(testIn[i].N,testIn[i].Arr)        // Change me
 		elapsed := time.Since(start)
 
 		// End func
-		if (result1== testOut[i].Output1) && (result2 ==testOut[i].Output2) && (elapsed.Seconds() <= 1) {
+		if (result1== testOut[i].Output1) && (result2 ==testOut[i].Output2) && (elapsed.Seconds() <= 1) {   // Change me
 			fmt.Println("Passed test", i+1, "after:", elapsed)
 		}
 	}
