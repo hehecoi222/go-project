@@ -15,10 +15,12 @@ func check(e error) {
 
 type testIn []struct {
 	N int `json:"N"`   // Change me
+	Arr []int `json:"Arr"`
 }
 
 type testOut []struct {
-	Output int `json:"Output"`   // Change me
+	Output1 int `json:"Output1"`   // Change me
+	Output2 int `json:"Output2"`
 }
 
 func ReadIn() (testIn, testOut) {
@@ -42,13 +44,10 @@ func ReadIn() (testIn, testOut) {
 }
 
 // Put func here
-func find_fact(N int) int {
-	find_fact := 1
-	for i := 1; i <= N; i++ {
-		find_fact *= i
-	}
-	return find_fact
-}
+
+
+
+
 // End func
 
 func main() {
@@ -58,11 +57,11 @@ func main() {
 		//Put func here
 
 		start := time.Now()
-		result := find_fact(testIn[i].N)
+		result1,result2 := EvenOddSum(testIn[i].N,testIn[i].Arr)
 		elapsed := time.Since(start)
 
 		// End func
-		if (result == testOut[i].Output) && (elapsed.Seconds() <= 1) {
+		if (result1== testOut[i].Output1) && (result2 ==testOut[i].Output2) && (elapsed.Seconds() <= 1) {
 			fmt.Println("Passed test", i+1, "after:", elapsed)
 		}
 	}
