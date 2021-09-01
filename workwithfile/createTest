@@ -6,27 +6,29 @@ import (
 )
 
 type testIn []struct {
-	N int `json:"N"`   //Change me
-	Arr []int `json:"Arr"`
+	N int `json:"N"` //Change me
 }
 
 type testOut []struct {
-	Output1 int `json:"Output1"`  //Change me
-	Output2 int `json:"Output2"`
+	Output string `json:"Output"` //Change me
 }
 
 // Put func here
-func EvenOddSum(N int, Arr []int) (int,int)  {
-	EvenOddSum := []int{0,0}
-	for i:= range Arr {
-		if (i+1) % 2 ==0 {
-			EvenOddSum[1] += Arr[i]
-		} else {
-			EvenOddSum[0] += Arr[i]
+func is_palindrome(n int) string {
+	x := []int{}
+	for n/10 != 0 {
+		x = append(x, n%10)
+		n /= 10
+	}
+	x = append(x, n)
+	for i := 0; i < (len(x) / 2); i++ {
+		if x[i] != x[len(x)-1] {
+			return "No"
 		}
 	}
-	return EvenOddSum[0],EvenOddSum[1]
+	return "Yes"
 }
+
 // End func
 
 func check(e error) {
@@ -39,7 +41,7 @@ func workFile() testIn {
 	fi, e := os.Open("testIn.json")
 	check(e)
 	defer fi.Close()
-	
+
 	var testIn testIn
 
 	Decod := json.NewDecoder(fi)
@@ -55,11 +57,11 @@ func writeFile(testOut testOut) {
 	Encod.Encode(testOut)
 }
 
-func main()  {
+func main() {
 	testIn := workFile()
-	testOut:= make(testOut,len(testIn)) 
+	testOut := make(testOut, len(testIn))
 	for i := range testIn {
-		testOut[i].Output1,testOut[i].Output2 = EvenOddSum(testIn[i].N,testIn[i].Arr)
+		testOut[i].Output = is_palindrome(testIn[i].N)
 	}
 	writeFile(testOut)
 }

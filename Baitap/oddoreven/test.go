@@ -14,13 +14,11 @@ func check(e error) {
 }
 
 type testIn []struct {
-	N int `json:"N"`   // Change me
-	Arr []int `json:"Arr"`
+	N int `json:"N"`   //Change me
 }
 
 type testOut []struct {
-	Output1 int `json:"Output1"`   // Change me
-	Output2 int `json:"Output2"`
+	Output string `json:"Output"`  //Change me
 }
 
 func ReadIn() (testIn, testOut) {
@@ -44,17 +42,11 @@ func ReadIn() (testIn, testOut) {
 }
 
 // Put func here
-func EvenOddSum(N int, Arr []int) (int,int)  {
-	EvenOddSum := []int{0,0}
-	for i:= range Arr {
-		if (i+1) % 2 ==0 {
-			EvenOddSum[1] += Arr[i]
-		} else {
-			EvenOddSum[0] += Arr[i]
-		}
-	}
-	return EvenOddSum[0],EvenOddSum[1]
-}
+
+
+
+
+
 // End func
 
 func main() {
@@ -64,11 +56,11 @@ func main() {
 		//Put func here
 
 		start := time.Now()
-		result1,result2 := EvenOddSum(testIn[i].N,testIn[i].Arr)        // Change me
+		result := oddEven(testIn[i].N)        // Change me
 		elapsed := time.Since(start)
 
 		// End func
-		if (result1== testOut[i].Output1) && (result2 ==testOut[i].Output2) && (elapsed.Seconds() <= 1) {   // Change me
+		if (result == testOut[i].Output) && (elapsed.Seconds() <= 1) {   // Change me
 			fmt.Println("Passed test", i+1, "after:", elapsed)
 		}
 	}
