@@ -7,26 +7,18 @@ import (
 
 type testIn []struct {
 	N int `json:"N"` //Change me
+	A int `json:"A"`
+	D int `json:"D"`
 }
 
 type testOut []struct {
-	Output string `json:"Output"` //Change me
+	Output int `json:"Output"` //Change me
 }
 
 // Put func here
-func is_palindrome(n int) string {
-	x := []int{}
-	for n/10 != 0 {
-		x = append(x, n%10)
-		n /= 10
-	}
-	x = append(x, n)
-	for i := 0; i < (len(x) / 2); i++ {
-		if x[i] != x[len(x)-1] {
-			return "No"
-		}
-	}
-	return "Yes"
+
+func sum_of_ap(n,a,d int) int  {
+	return n*(a+a+(n-1)*d)/2
 }
 
 // End func
@@ -44,8 +36,7 @@ func workFile() testIn {
 
 	var testIn testIn
 
-	Decod := json.NewDecoder(fi)
-	Decod.Decode(&testIn)
+	json.NewDecoder(fi).Decode(&testIn)
 	return testIn
 }
 
@@ -53,15 +44,14 @@ func writeFile(testOut testOut) {
 	fo, e := os.Create("testOut.json")
 	check(e)
 	defer fo.Close()
-	Encod := json.NewEncoder(fo)
-	Encod.Encode(testOut)
+	json.NewEncoder(fo).Encode(testOut)
 }
 
 func main() {
 	testIn := workFile()
 	testOut := make(testOut, len(testIn))
 	for i := range testIn {
-		testOut[i].Output = is_palindrome(testIn[i].N)
+		testOut[i].Output = sum_of_ap(testIn[i].N,testIn[i].A,testIn[i].D)
 	}
 	writeFile(testOut)
 }

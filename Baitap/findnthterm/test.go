@@ -14,9 +14,7 @@ func check(e error) {
 }
 
 type testIn []struct {
-	N int `json:"N"` //Change me
-	A int `json:"A"`
-	D int `json:"D"`
+	N int `json:"N"`   //Change me
 }
 
 type testOut []struct {
@@ -56,7 +54,7 @@ func main() {
 		//Put func here
 
 		start := time.Now()
-		result := sum_of_ap(testIn[i].N,testIn[i].A,testIn[i].D)        // Change me
+		result := findNthTerm(testIn[i].N)        // Change me
 		elapsed := time.Since(start)
 
 		// End func
