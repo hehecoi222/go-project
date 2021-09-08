@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"runtime"
+	"github.com/hehecoi222/go-project/workwithmodule"
 )
 
 func main(){
@@ -11,4 +12,5 @@ func main(){
 	fmt.Println(runtime.NumCPU())
 	fmt.Println(runtime.NumGoroutine())
 	fmt.Println("Hello,  世界")
+	fmt.Println(string(workwithmodule.CryptPass("Hi")))
 }
