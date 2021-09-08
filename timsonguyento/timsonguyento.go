@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"golang.org/x/crypto/bcrypt"
+)
 
 func main() {
 	n := 3456
@@ -17,4 +20,10 @@ func main() {
 			fmt.Println(chuso)
 		}
 	}
+	Ps := []byte(`Hello`)
+	Pscrypt, err := bcrypt.GenerateFromPassword(Ps, 10)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(string(Pscrypt))
 }
