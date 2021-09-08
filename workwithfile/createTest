@@ -6,9 +6,8 @@ import (
 )
 
 type testIn []struct {
-	N int `json:"N"` //Change me
-	A int `json:"A"`
-	D int `json:"D"`
+	Num1 int `json:"Num1"` //Change me
+	Num2 int `json:"Num2"`
 }
 
 type testOut []struct {
@@ -17,8 +16,8 @@ type testOut []struct {
 
 // Put func here
 
-func sum_of_ap(n,a,d int) int  {
-	return n*(a+a+(n-1)*d)/2
+func findRemainder(num1,num2 int) int {
+	return num1 % num2
 }
 
 // End func
@@ -51,7 +50,7 @@ func main() {
 	testIn := workFile()
 	testOut := make(testOut, len(testIn))
 	for i := range testIn {
-		testOut[i].Output = sum_of_ap(testIn[i].N,testIn[i].A,testIn[i].D)
+		testOut[i].Output = findRemainder(testIn[i].Num1,testIn[i].Num2)
 	}
 	writeFile(testOut)
 }
