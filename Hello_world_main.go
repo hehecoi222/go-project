@@ -11,6 +11,6 @@ func main(){
 	fmt.Println(runtime.GOARCH)
 	fmt.Println(runtime.NumCPU())
 	fmt.Println(runtime.NumGoroutine())
-	fmt.Println("Hello,  世界")
+	fmt.Printl("Hello,  世界")
 	fmt.Println(string(workwithmodule.CryptPass("Hi")))
 }
