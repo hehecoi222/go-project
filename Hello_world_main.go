@@ -13,4 +13,7 @@ func main(){
 	fmt.Println(runtime.NumGoroutine())
 	fmt.Println("Hello,  世界")
 	fmt.Println(string(workwithmodule.CryptPass("Hi")))
+	a := 0
+	fmt.Scanln(&a)
+	fmt.Println(a)
 }
