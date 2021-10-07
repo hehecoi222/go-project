@@ -5,7 +5,7 @@ import (
 	"strconv"
 )
 
-func reverse(tnumIn string) string {
+func reverseWork(tnumIn string) string {
 	tnum := []byte(tnumIn)
 	for i := 0; i < len(tnum)/2; i++ {
 		tnum[i], tnum[len(tnum)-i-1] = tnum[len(tnum)-i-1], tnum[i]
@@ -13,7 +13,7 @@ func reverse(tnumIn string) string {
 	return string(tnum)
 }
 
-func main() {
+func mainWork() {
 	var num1 string = "999999"
 	var num2 string = "99"
 	var tnum1, tnum2 string
@@ -25,8 +25,8 @@ func main() {
 		tnum1 = num1
 		tnum2 = num2
 	}
-	tnum1 = reverse(tnum1)
-	tnum2 = reverse(tnum2)
+	tnum1 = reverseWork(tnum1)
+	tnum2 = reverseWork(tnum2)
 	tpro := make([]int, len(tnum1)+len(tnum2))
 	for i, v := range tnum2 {
 		for j, vnum := range tnum1 {
