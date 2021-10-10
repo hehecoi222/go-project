@@ -6,4 +6,4 @@ require github.com/hehecoi222/go-project/workwithmodule v0.0.0-20211007120720-8f
 
 require golang.org/x/crypto v0.0.0-20210817164053-32db794688a5 // indirect
 
-replace github.com/hehecoi222/go-project/workwithmodule => /home/hehecoi222/go-project/workwithmodule
+replace github.com/hehecoi222/go-project/workwithmodule => /Users/hehec/go-project/workwithmodule
